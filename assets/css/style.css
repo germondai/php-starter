@@ -816,6 +816,21 @@ video {
   display: none;
 }
 
+.size-4{
+  width: 1rem;
+  height: 1rem;
+}
+
+.size-16{
+  width: 4rem;
+  height: 4rem;
+}
+
+.size-8{
+  width: 2rem;
+  height: 2rem;
+}
+
 .h-screen{
   height: 100vh;
 }

@@ -2,7 +2,10 @@
 
 <main class="w-screen h-screen grid place-items-center">
     <div class="flex flex-col items-center gap-4">
-        <h1 class="font-bold">PHP Starter</h1>
+        <div class="flex items-center gap-4">
+            <img src="assets/img/favicon.ico" alt="Rocket" class="size-8">
+            <h1 class="font-bold">PHP Starter</h1>
+        </div>
         <div class="flex flex-col items-center">
             <b>Features</b>
             <ul class="list-disc">
