@@ -621,6 +621,10 @@ video {
   pointer-events: auto;
 }
 
+.\!visible{
+  visibility: visible !important;
+}
+
 .visible{
   visibility: visible;
 }
@@ -659,6 +663,10 @@ video {
 
 .-inset-1{
   inset: -0.25rem;
+}
+
+.end-1{
+  inset-inline-end: 0.25rem;
 }
 
 .isolate{
@@ -816,16 +824,6 @@ video {
   display: none;
 }
 
-.size-4{
-  width: 1rem;
-  height: 1rem;
-}
-
-.size-16{
-  width: 4rem;
-  height: 4rem;
-}
-
 .size-8{
   width: 2rem;
   height: 2rem;
@@ -833,6 +831,14 @@ video {
 
 .h-screen{
   height: 100vh;
+}
+
+.max-h-screen{
+  max-height: 100vh;
+}
+
+.min-h-screen{
+  min-height: 100vh;
 }
 
 .w-\[this-is\\\\\]{
@@ -1992,6 +1998,10 @@ video {
   vertical-align: super;
 }
 
+.text-\[64px\]{
+  font-size: 64px;
+}
+
 .font-bold{
   font-weight: 700;
 }
@@ -2465,6 +2475,11 @@ video {
 
 html {
   background: var(--bg-main);
+}
+
+html,
+body {
+  overflow-x: hidden;
 }
 
 label,

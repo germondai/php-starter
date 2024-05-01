@@ -27,9 +27,13 @@ if (!isDev()) {
     }
 }
 
+# paths
+$basePath = __DIR__ . "/../";
+$linkPath = dirname($_SERVER["PHP_SELF"]) . "/";
+
 # autoload
 try {
-    require_once "vendor/autoload.php";
+    require_once $basePath . "vendor/autoload.php";
 } catch (\Throwable $th) {
     trigger_error('Install Composer Dependencies!');
 }
@@ -38,10 +42,6 @@ try {
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
-# paths
-$basePath = __DIR__ . "/../";
-$linkPath = dirname($_SERVER["PHP_SELF"]) . "/";
 
 # .env
 try {

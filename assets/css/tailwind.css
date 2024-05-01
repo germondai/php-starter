@@ -28,6 +28,11 @@ html {
     background: var(--bg-main);
 }
 
+html,
+body {
+    overflow-x: hidden;
+}
+
 label,
 a,
 p,
