@@ -16,14 +16,26 @@ Requirements
 - Composer
 - Node Package Manager (pnpm - recommended)
 
-**composer**
+**Composer**
 
 ```bash
 composer install
 ```
 
-**node**
+**Node Packages**
 
 ```bash
 pnpm install
+```
+
+## To watch Tailwind CSS
+
+```bash
+pnpm run watch:css
+```
+
+or simply
+
+```bash
+pnpm run start
 ```
