@@ -32,7 +32,7 @@ $linkPath = dirname($_SERVER["PHP_SELF"]) . "/";
 
 # autoload
 try {
-    require_once $basePath . "vendor/autoload.php";
+    @require_once $basePath . "vendor/autoload.php";
 } catch (\Throwable $th) {
     trigger_error('Install Composer Dependencies!');
 }
