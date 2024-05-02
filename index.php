@@ -1,5 +1,7 @@
-<?php require_once "includes/config.php"; ?>
-<?php include $basePath . "includes/header.php"; ?>
+<?php
+require_once "includes/config.php";
+include $basePath . "includes/header.php";
+?>
 
 <main class="w-screen h-screen grid place-items-center">
     <div class="flex flex-col items-center gap-4">
