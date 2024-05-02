@@ -8,7 +8,7 @@ require_once __DIR__ . '/config.php';
 
 # define scripts
 PageHelper::setScripts([
-    "https://code.jquery.com/jquery-3.7.1.min.js",
+    "assets/js/jquery-3.7.1.min.js",
     "assets/js/main.js"
 ]);
 
