@@ -10,7 +10,8 @@
         <div class="flex flex-col items-center">
             <b>Features</b>
             <ul class="list-disc">
-                <li>Tailwindcss</li>
+                <li>Tailwind CSS</li>
+                <li>jQuery</li>
                 <li>Nette</li>
                 <ul class="list-disc pl-5">
                     <li>DB Explorer</li>

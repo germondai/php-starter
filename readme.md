@@ -3,6 +3,7 @@
 Simple PHP Starter with features like
 
 - Tailwind CSS
+- jQuery
 - Nette
   - DB Explorer
   - Tracy Dump
