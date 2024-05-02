@@ -1,19 +1,38 @@
-<?php require_once __DIR__ . '/config.php'; ?>
+<?php
+
+# imports
+use Utils\PageHelper;
+
+# require config
+require_once __DIR__ . '/config.php';
+
+# define fallback icon
+PageHelper::setIcon("assets/img/favicon.ico");
+
+# define fallback project name (this will be displayed in page title)
+PageHelper::setProjectName("PHP Starter");
+
+# define fallback metas
+PageHelper::setMetas([
+    "description" => "PHP Starter pack with Ready-to-Use functions like TailwindCSS",
+    "keywords" => "PHP, Starter, Tailwind, CSS, TailwindCSS, Nette, Tracy, Env"
+]);
+
+# define styles
+PageHelper::setStyles(["assets/css/style.css"]);
+
+?>
 
 <!DOCTYPE html>
-<html lang="<?= $_GET["page"]["lang"] ?? 'en' ?>">
+<html lang="<?= PageHelper::getLang() ?>">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?= $_GET["page"]["description"] ?? 'PHP Starter' ?>">
-    <meta name="keywords" content="<?= $_GET["page"]["keywords"] ?? 'PHP, Starter' ?>">
-    <title><?= !empty($_GET["page"]["title"]) ? $_GET["page"]["title"] . " | PHP Starter" : "PHP Starter" ?></title>
-    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon"/>
-    <link rel="stylesheet" href="<?= $linkPath . "assets/css/style.css" ?>">
     <?php
-    foreach ($_GET["page"]["css"] ?? [] as $css) {
-        echo '<link href="' . $linkPath . $css . '" rel="stylesheet">';
-    }
+    PageHelper::renderCharset();
+    PageHelper::renderMetas();
+    PageHelper::renderTitle();
+    PageHelper::renderIcon();
+    PageHelper::renderStyles();
     ?>
 </head>
 <body>
+    <header></header>

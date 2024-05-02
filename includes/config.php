@@ -1,30 +1,7 @@
 <?php
 
-# dev mode
-if (!function_exists("isDev")) {
-    function isDev(): bool
-    {
-        return ($_SERVER['SERVER_ADDR'] == '127.0.0.1' || $_SERVER['SERVER_ADDR'] == '::1');
-    }
-}
-
-# warnings
-if (isDev()) {
-    # enable
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-} else {
-    # disable
-    error_reporting(0);
-}
-
-# dump
-if (!isDev()) {
-    function dump(mixed $var): void
-    {
-    }
-}
+# imports
+use Utils\Helper;
 
 # paths
 $basePath = __DIR__ . "/../";
@@ -35,6 +12,27 @@ try {
     require_once $basePath . "vendor/autoload.php";
 } catch (\Throwable $th) {
     trigger_error('Install Composer Dependencies!');
+}
+
+# setup helper
+Helper::setPaths($basePath, $linkPath);
+
+# warnings
+if (Helper::isDev()) {
+    # enable
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+} else {
+    # disable
+    error_reporting(0);
+}
+
+# dump
+if (!Helper::isDev()) {
+    function dump(mixed $var): void
+    {
+    }
 }
 
 # session

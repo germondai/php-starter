@@ -1,9 +1,22 @@
-<?php require_once __DIR__ . '/config.php'; ?>
+<?php
 
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
-        <script src="<?= $linkPath . "assets/js/main.js" ?>"></script>
-        <?php foreach ($_GET["page"]["js"] ?? [] as $js) {
-            echo '<script src="' . $linkPath . $js . '"></script>';
-        } ?>
+# imports
+use Utils\PageHelper;
+
+# require config
+require_once __DIR__ . '/config.php';
+
+# define scripts
+PageHelper::setScripts([
+    "https://code.jquery.com/jquery-3.7.1.min.js",
+    "assets/js/main.js"
+]);
+
+?>
+        
+        <footer></footer>
+        <?php
+        PageHelper::renderScripts();
+        ?>
     </body>
 </html>
