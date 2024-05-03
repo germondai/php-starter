@@ -4,7 +4,7 @@
 use Utils\PageHelper;
 
 # require config
-require_once "includes/config.php";
+require_once "../src/includes/config.php";
 
 # set error header (404)
 header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
@@ -13,7 +13,7 @@ header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
 PageHelper::setTitle('404 - Page Not Found!');
 
 # include header
-include $basePath . "includes/header.php";
+include $basePath . "src/includes/header.php";
 
 ?>
 
@@ -24,4 +24,4 @@ include $basePath . "includes/header.php";
     </div>
 </main>
 
-<?php include $basePath . "includes/footer.php"; ?>
+<?php include $basePath . "src/includes/footer.php"; ?>

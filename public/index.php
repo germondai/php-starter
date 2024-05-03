@@ -1,6 +1,6 @@
 <?php
-require_once "includes/config.php";
-include $basePath . "includes/header.php";
+require_once "../src/includes/config.php";
+include $basePath . "src/includes/header.php";
 ?>
 
 <main class="w-screen h-screen grid place-items-center">
@@ -26,4 +26,4 @@ include $basePath . "includes/header.php";
     </div>
 </main>
 
-<?php include $basePath . "includes/footer.php"; ?>
+<?php include $basePath . "src/includes/footer.php"; ?>
