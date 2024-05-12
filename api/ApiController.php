@@ -2,8 +2,18 @@
 
 namespace Api;
 
+use Nette\Database\Explorer;
+use Utils\Database;
+
 class ApiController
 {
+    protected Explorer $e;
+
+    public function __construct()
+    {
+        $this->e = Database::explore();
+    }
+
     public function handleRequest(string $request, array $data): void
     {
         if (str_contains($request, '/')) {
