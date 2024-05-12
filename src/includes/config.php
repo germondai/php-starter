@@ -4,7 +4,7 @@
 use Utils\Helper;
 
 # paths
-$basePath = __DIR__ . "/../../";
+$basePath = realpath(__DIR__ . "/../../") . "/";
 $linkPath = dirname($_SERVER["PHP_SELF"]) . "/";
 
 # autoload

@@ -1,22 +1,31 @@
 <?php
 
-header("Content-Type: application/json");
+require_once "../src/includes/config.php";
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $data = [
-        "message" => "GET request received",
-        "data" => $_GET
-    ];
-} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = [
-        "message" => "POST request received",
-        "data" => $_POST
-    ];
-} else {
-    http_response_code(405);
-    $data = ["error" => "Method Not Allowed"];
+$actionPath = str_replace($linkPath, '', $_SERVER['REQUEST_URI']);
+$action = str_replace('/', '->', $actionPath);
+
+// Define your API functions
+function contact()
+{
+    $response = array(
+        'message' => 'This is the contact function'
+    );
+    return $response;
 }
 
-$data ??= 'error';
+// Main entry point
+function main(string $action)
+{
+    if (function_exists($action)) {
+        $response = $action();
+    } else {
+        $response = ['error' => 'Invalid endpoint'];
+        http_response_code(404);
+    }
 
-echo json_encode($data);
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}
+
+main($action);
