@@ -12,8 +12,11 @@ This project **simplifies** starting new **PHP** projects. It's perfect if you w
 
 **Overview**
 
-- Secured Routing
 - Own API System
+- Security
+  - Routing
+  - File and Dir access
+- Custom Utils
 - Organized Structure
 - Nette
   - Database Explorer
@@ -44,6 +47,15 @@ Requirements
 ```bash
 composer install
 pnpm install
+```
+
+**Setup .env**
+
+Fill in placeholders for database credentials in the .env file
+
+```bash
+# to dupe example.env as .env
+cp example.env .env
 ```
 
 ## 🎨 Tailwind CSS Guide
