@@ -6,6 +6,13 @@ use Api\ApiController;
 
 class ArticleModel extends ApiController
 {
+    public function action(array $data): array
+    {
+        $this->requireMethod('GET');
+
+        return ['data' => 'This is default action'];
+    }
+
     public function actionInsert(array $data): array
     {
         $this->requireMethod('POST');
