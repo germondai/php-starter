@@ -564,6 +564,10 @@ video {
   display: grid;
 }
 
+.contents{
+  display: contents;
+}
+
 .size-8{
   width: 2rem;
   height: 2rem;
@@ -571,6 +575,14 @@ video {
 
 .h-screen{
   height: 100vh;
+}
+
+.h-4\/5{
+  height: 80%;
+}
+
+.w-4\/5{
+  width: 80%;
 }
 
 .w-screen{
@@ -597,6 +609,18 @@ video {
   gap: 1rem;
 }
 
+.gap-2{
+  gap: 0.5rem;
+}
+
+.gap-6{
+  gap: 1.5rem;
+}
+
+.p-8{
+  padding: 2rem;
+}
+
 .pl-5{
   padding-left: 1.25rem;
 }
@@ -605,8 +629,37 @@ video {
   font-size: 64px;
 }
 
+.text-2xl{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .font-bold{
   font-weight: 700;
+}
+
+.text-inherit{
+  color: inherit;
+}
+
+.text-\[var\(--font-h1\)\]{
+  color: var(--font-h1);
+}
+
+.underline{
+  text-decoration-line: underline;
+}
+
+.underline-offset-1{
+  text-underline-offset: 1px;
+}
+
+.underline-offset-2{
+  text-underline-offset: 2px;
+}
+
+.\[font-size\:var\(--font-h1\)\]{
+  font-size: var(--font-h1);
 }
 
 * {
