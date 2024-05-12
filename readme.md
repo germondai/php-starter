@@ -1,55 +1,67 @@
-# PHP Starter &nbsp;<img src="public/assets/img/favicon.ico" alt="Rocket Icon" width="24"/>
+<h1 align="center">
+  <a href="https://germondai.rf.gd" target="_blank">
+    <img align="center" src="https://skillicons.dev/icons?i=php,mysql,tailwind,jquery" /><br/><br/>
+    <span>PHP Starter</span>&nbsp;
+    <img src="public/assets/img/favicon.ico" alt="Rocket Icon" width="24"/>
+  </a>
+</h1>
 
-Simple **PHP Starter** with features like
+This project **simplifies** starting new **PHP** projects. It's perfect if you want to **skip setting up basics** and **get coding quickly**. It **doesn't rely** on any **PHP framework**, making **configuration** easy and offering great **features**.
 
-- Tailwind CSS
-- jQuery
+## ⚡️ Features
+
+**Overview**
+
+- Secured Routing
+- Own API System
+- Organized Structure
 - Nette
-  - DB Explorer
-  - Tracy Dump
+  - Database Explorer
+  - Tracy
 - Environment (.env)
-- Clean Interface 🤩
 
-## Structure
+## 🧬 Structure
 
-**public** - the only directory accessible from outside (by visitors)\
-**src** - contains includes, utils and dev assets\
-**temp** - storage for nette db explorer
+**api/** - accessible on /api/_model_/_action_, contains models\
+**public/** - the main directory accessible from outside\
+**src/** - contains includes, utils and dev assets\
 
-## Installation Guide
+## 🧠 Technologies
+
+- <a href="https://www.php.net/" target="_blank">PHP</a>
+- <a href="https://tailwindcss.com/" target="_blank">TailwindCSS</a>
+- <a href="https://jquery.com/" target="_blank">jQuery</a>
+
+## 🛠️ Installation Instructions
 
 Requirements
 
-- Composer
-- Node Package Manager (pnpm - recommended)
+- 👨‍💻 <a href="https://getcomposer.org/" target="_blank">Composer</a>
+- 📦 Node Package Manager (<a href="https://pnpm.io/" target="_blank">pnpm</a> - recommended)
 
-**Composer**
+**Install dependencies**
 
 ```bash
 composer install
-```
-
-**Node Packages**
-
-```bash
 pnpm install
 ```
 
-## Tailwind CSS Guide
+## 🎨 Tailwind CSS Guide
 
 It's main css is stored in "_src/assets/css/tailwind.css_"\
 and its being converted into "_public/assets/css/style.css_"
 
 ### Conversion / Watch
 
-To convert it, you have to run _watch:css_
-
 ```bash
+# To convert it, you have to run
 pnpm run watch:css
-```
 
-or simply run _start_ (does the same)
-
-```bash
+# or simply run start (does the same)
 pnpm run start
 ```
+
+<p align="center">
+    <span>Made with ❤️ by</span>
+    <a href="https://github.com/germondai" target="_blank">@germondai</a>
+</p>
