@@ -17,12 +17,14 @@ include $basePath . "src/includes/header.php";
         <div class="flex flex-col items-center">
             <b>Features</b>
             <ul class="list-disc">
+                <li>Security features</li>
+                <li>Own API system</li>
                 <li>Tailwind CSS</li>
                 <li>jQuery</li>
                 <li>Nette</li>
                 <ul class="list-disc pl-5">
                     <li>DB Explorer</li>
-                    <li>Tracy Dump</li>
+                    <li>Tracy</li>
                 </ul>
                 <li>Environment (.env)</li>
                 <li>Clean Interface 🤩</li>

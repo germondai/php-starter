@@ -28,17 +28,9 @@ if (Helper::isDev()) {
     error_reporting(0);
 }
 
-# dump
-if (!Helper::isDev()) {
-    function dump(mixed $var): void
-    {
-    }
-}
-
 # session
-if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE)
     session_start();
-}
 
 # .env
 try {
