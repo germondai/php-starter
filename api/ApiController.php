@@ -32,4 +32,14 @@ class ApiController
         http_response_code($code);
         echo json_encode($data, true);
     }
+
+    protected function requireMethod($requiredMethod)
+    {
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
+
+        if ($requestMethod !== $requiredMethod) {
+            $this->respond(405, ['error' => 'Method not allowed']);
+            exit();
+        }
+    }
 }
