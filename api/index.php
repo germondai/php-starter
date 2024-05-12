@@ -13,7 +13,11 @@ $action = str_replace($linkPath, '', $_SERVER['REQUEST_URI']);
 header('Content-Type: application/json');
 
 # define request data (post / get)
-$requestData = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST : $_GET;
+$requestData = array_merge(
+    json_decode(file_get_contents('php://input'), true) ?? [],
+    $_POST,
+    $_GET
+);
 
 # handle api request
 $api = new ApiController();
