@@ -2,6 +2,7 @@
 
 # imports
 use Utils\Helper;
+use Utils\Database;
 
 # paths
 $basePath = realpath(__DIR__ . "/../../") . "/";
@@ -34,15 +35,20 @@ if (session_status() == PHP_SESSION_NONE)
 
 # .env
 try {
-    $dotenv = Dotenv\Dotenv::createImmutable($basePath);
-    $dotenv->load();
+    (Dotenv\Dotenv::createImmutable($basePath))->load();
 } catch (\Throwable $th) {
     trigger_error('No .env detected!');
 }
 
 # database
 try {
-    require_once "db.php";
+    Database::connect(
+        $_ENV['DB_DSN'],
+        $_ENV['DB_USER'],
+        $_ENV['DB_PASS']
+    );
+
+    $explorer = Database::explore();
 } catch (\Throwable $th) {
     trigger_error('Database Connection Failed!');
 }

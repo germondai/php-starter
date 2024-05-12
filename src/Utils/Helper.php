@@ -12,6 +12,16 @@ class Helper
         self::$linkPath = $linkPath;
     }
 
+    public static function getBasePath(): string
+    {
+        return self::$basePath;
+    }
+
+    public static function getLinkPath(): string
+    {
+        return self::$linkPath;
+    }
+
     public static function isDev(): bool
     {
         return ($_SERVER['SERVER_ADDR'] == '127.0.0.1' || $_SERVER['SERVER_ADDR'] == '::1');
