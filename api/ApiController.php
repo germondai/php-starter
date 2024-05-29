@@ -10,6 +10,7 @@ class ApiController
 {
     protected Explorer $e;
     protected array $params;
+    protected array $headers;
     private string $request;
     private array $action;
     protected array $statuses = [
@@ -35,6 +36,7 @@ class ApiController
     {
         $this->e = Database::explore();
         $this->setParams();
+        $this->setHeaders();
         $this->setRequest();
     }
 
@@ -48,6 +50,11 @@ class ApiController
         );
 
         $this->params = $params;
+    }
+
+    private function setHeaders()
+    {
+        $this->headers = getallheaders();
     }
 
     private function setRequest()
@@ -141,7 +148,7 @@ class ApiController
 
     protected function requireHeaders(array $rHs): void
     {
-        $this->requireValues(getallheaders(), $rHs);
+        $this->requireValues($this->headers, $rHs);
     }
 
     protected function requireParams(array $rPs): void
