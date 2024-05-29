@@ -7,7 +7,7 @@ use Api\ApiController;
 require_once "../src/includes/config.php";
 
 # get api action
-$action = str_replace(substr($linkPath, 0, -4), '', $_SERVER['REQUEST_URI']);
+$action = str_replace(substr($linkPath, 0, -4), '', $_SERVER['REDIRECT_URL']);
 
 # set json and cors headers
 header('Access-Control-Allow-Origin: *');
