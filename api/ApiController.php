@@ -9,7 +9,7 @@ use Utils\Helper;
 class ApiController
 {
     protected Explorer $e;
-    protected array $body;
+    protected array $params;
     private string $request;
     private array $action;
     protected array $statuses = [
@@ -34,20 +34,20 @@ class ApiController
     public function __construct()
     {
         $this->e = Database::explore();
-        $this->setBody();
+        $this->setParams();
         $this->setRequest();
     }
 
-    private function setBody()
+    private function setParams()
     {
         $requestData = json_decode(file_get_contents('php://input') ?? '', true) ?? [];
-        $body = array_merge(
+        $params = array_merge(
             $requestData,
             $_POST,
             $_GET,
         );
 
-        $this->body = $body;
+        $this->params = $params;
     }
 
     private function setRequest()
@@ -132,7 +132,7 @@ class ApiController
         );
     }
 
-    protected function allowMethods($allowedMethods): void
+    protected function allowMethods(array $allowedMethods): void
     {
         if (!in_array($_SERVER['REQUEST_METHOD'], $allowedMethods)) {
             $this->throwError(405);
@@ -141,11 +141,19 @@ class ApiController
 
     protected function requireHeaders(array $rHs): void
     {
-        $headers = getallheaders();
+        $this->requireValues(getallheaders(), $rHs);
+    }
 
-        foreach ($rHs as $rH) {
-            if (!isset($headers[$rH])) {
-                $this->throwError(400);
+    protected function requireParams(array $rPs): void
+    {
+        $this->requireValues($this->params, $rPs);
+    }
+
+    private function requireValues(array $values, array $requiredValues, int $code = 400)
+    {
+        foreach ($requiredValues as $requiredValue) {
+            if (!isset($values[$requiredValue])) {
+                $this->throwError($code);
             }
         }
     }
