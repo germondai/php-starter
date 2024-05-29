@@ -3,6 +3,7 @@
 namespace Api\Models;
 
 use Api\ApiController;
+use Utils\Token;
 
 class AuthModel extends ApiController
 {
@@ -10,11 +11,10 @@ class AuthModel extends ApiController
     {
         $this->allowMethods(['POST']);
         $this->requireHeaders(['Authorization']);
-
-        $token = $this->headers['Authorization'];
+        $jwt = $this->verifyJWT();
 
         return [
-            'your_current_token' => $token
+            'verified' => $jwt
         ];
     }
 
@@ -27,12 +27,14 @@ class AuthModel extends ApiController
             $this->params['email'] === 'imejl'
             && $this->params['password'] === 'pass'
         ) {
+            $user = [
+                'name' => 'Joe',
+                'surname' => 'Doe',
+            ];
+
             return [
-                'user' => [
-                    'name' => 'Joe',
-                    'surname' => 'Doe'
-                ],
-                'token' => 'jwt.token'
+                'user' => $user,
+                'token' => Token::generate($user),
             ];
         } else {
             $this->throwError(401);

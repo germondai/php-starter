@@ -31,4 +31,17 @@ class Helper
     {
         return str_starts_with($link, 'https://') ? $link : self::$linkPath . $link;
     }
+
+    public static function getEnv(string $env, bool $die = false)
+    {
+        $env = $_ENV[$env] ?? false;
+
+        if ($env)
+            return $env;
+
+        trigger_error('Add valid "' . $env . '" to .env!');
+
+        if ($die)
+            die();
+    }
 }

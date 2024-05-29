@@ -5,6 +5,7 @@ namespace Api;
 use Nette\Database\Explorer;
 use Utils\Database;
 use Utils\Helper;
+use Utils\Token;
 
 class ApiController
 {
@@ -163,5 +164,19 @@ class ApiController
                 $this->throwError($code);
             }
         }
+    }
+
+    protected function verifyJWT(bool $die = true): \stdClass|false
+    {
+        $auth = $this->headers['Authorization'] ?? false;
+
+        if ($auth)
+            $token = Token::verify($auth);
+
+        if ($token)
+            return $token;
+
+
+        return $die ? $this->throwError(401) : false;
     }
 }
