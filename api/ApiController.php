@@ -119,12 +119,12 @@ class ApiController
         die();
     }
 
-    protected function throwError(int $code = 400, array|string $msg = null): void
+    protected function throwError(int $code = 400, array|string $error = null): void
     {
         $this->respond(
             [
                 'error' =>
-                    $msg
+                    $error
                     ?? $this->statuses[$code]
                     ?? 'Something Went Wrong!'
             ],
@@ -132,10 +132,21 @@ class ApiController
         );
     }
 
-    protected function requireMethod($requiredMethod): void
+    protected function allowMethods($allowedMethods): void
     {
-        if ($_SERVER['REQUEST_METHOD'] !== $requiredMethod) {
+        if (!in_array($_SERVER['REQUEST_METHOD'], $allowedMethods)) {
             $this->throwError(405);
+        }
+    }
+
+    protected function requireHeaders(array $rHs): void
+    {
+        $headers = getallheaders();
+
+        foreach ($rHs as $rH) {
+            if (!isset($headers[$rH])) {
+                $this->throwError(400);
+            }
         }
     }
 }

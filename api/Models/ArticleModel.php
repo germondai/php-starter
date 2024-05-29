@@ -8,14 +8,14 @@ class ArticleModel extends ApiController
 {
     public function action()
     {
-        $this->requireMethod('GET');
+        $this->allowMethods(['GET']);
 
         return 'This is default action';
     }
 
     public function actionInsert()
     {
-        $this->requireMethod('POST');
+        $this->allowMethods(['POST']);
 
         if ($this->body) {
             $this->respond(
@@ -25,7 +25,7 @@ class ArticleModel extends ApiController
                 ]
             );
         } else {
-            $this->throwError(404);
+            $this->throwError(400);
         }
     }
 }
