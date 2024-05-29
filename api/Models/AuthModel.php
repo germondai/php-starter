@@ -30,6 +30,7 @@ class AuthModel extends ApiController
             $user = [
                 'name' => 'Joe',
                 'surname' => 'Doe',
+                'email' => 'imejl',
             ];
 
             return [

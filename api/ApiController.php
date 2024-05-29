@@ -166,16 +166,15 @@ class ApiController
         }
     }
 
-    protected function verifyJWT(bool $die = true): \stdClass|false
+    protected function verifyJWT(bool $die = true): array|false
     {
         $auth = $this->headers['Authorization'] ?? false;
 
         if ($auth)
             $token = Token::verify($auth);
 
-        if ($token)
+        if (!empty($token))
             return $token;
-
 
         return $die ? $this->throwError(401) : false;
     }

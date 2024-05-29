@@ -32,7 +32,7 @@ class Token
         return JWT::encode($payload, self::$secret, self::$alg);
     }
 
-    public static function verify(string $token): \stdClass|false
+    public static function verify(string $token): array|false
     {
         self::init();
 
@@ -40,7 +40,7 @@ class Token
             $token = str_replace('Bearer ', '', $token);
 
         try {
-            return JWT::decode($token, new Key(self::$secret, self::$alg));
+            return (array) JWT::decode($token, new Key(self::$secret, self::$alg));
         } catch (\Exception $e) {
             return false;
         }
