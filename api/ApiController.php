@@ -100,8 +100,10 @@ class ApiController
             if (method_exists($model, $method)) {
                 $result = $model->$method();
 
-                // fallback if user just return, no $this->respond()
-                $this->respond($result);
+                // fallback if return, no $this->respond()
+                $result
+                    ? $this->respond($result)
+                    : $this->throwError(404);
             } else {
                 $this->throwError(404, 'Method not found');
             }
@@ -113,7 +115,7 @@ class ApiController
     protected function respond(array|string $response, int $code = 200): void
     {
         http_response_code($code);
-        echo json_encode($response, true);
+        echo json_encode(!is_array($response) ? ['data' => $response] : $response, true);
         die();
     }
 
