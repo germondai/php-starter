@@ -7,21 +7,31 @@ use Api\ApiController;
 require_once "../src/includes/config.php";
 
 # get api action
-$action = str_replace($linkPath, '', $_SERVER['REQUEST_URI']);
+$action = str_replace(substr($linkPath, 0, -4), '', $_SERVER['REQUEST_URI']);
 
-# set json header
-header('Content-Type: application/json');
+# set json and cors headers
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE');
+header("Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-Requested-With");
+header('Content-Type: application/json; charset=utf-8');
+
+# preflight error fix
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    die();
+}
 
 # define request data (post / get)
-$requestData = array_merge(
-    json_decode(file_get_contents('php://input'), true) ?? [],
+$requestData = json_decode(file_get_contents('php://input') ?? '', true) ?? [];
+$data = array_merge(
+    $requestData,
     $_POST,
-    $_GET
+    $_GET,
 );
 
 # handle api request
 $api = new ApiController();
 $api->handleRequest(
     $action,
-    $requestData
+    $data
 );
