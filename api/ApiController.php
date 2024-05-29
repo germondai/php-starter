@@ -58,27 +58,33 @@ class ApiController
         $this->request = $request;
     }
 
-    private function solveRequest()
+    private function solveRequest(): void
     {
         $req = $this->request;
 
         if (str_contains($req, '/')) {
             $requestParts = explode('/', $req);
+
             if (empty($requestParts[0]) || $requestParts[0] === 'api')
                 unset($requestParts[0]);
             $method = 'action' . ucfirst(array_pop($requestParts));
             $classParts = array_splice($requestParts, -1, 1);
-            $model = ucfirst($classParts[0]) . 'Model';
-            $namespace = 'Api\Models\\' . (!empty($requestParts) ? implode('\\', array_map('ucfirst', $requestParts)) . '\\' : '');
-            $class = $namespace . $model;
 
-            $this->action = [
-                'class' => $class,
-                'method' => $method,
-            ];
-        } else {
-            $this->throwError(400, 'No model specified');
+            if ($classParts) {
+                $model = ucfirst($classParts[0]) . 'Model';
+                $namespace = 'Api\Models\\' . (!empty($requestParts) ? implode('\\', array_map('ucfirst', $requestParts)) . '\\' : '');
+                $class = $namespace . $model;
+
+                $this->action = [
+                    'class' => $class,
+                    'method' => $method,
+                ];
+
+                return;
+            }
         }
+
+        $this->throwError(400, 'No model specified');
     }
 
     public function run(): void
