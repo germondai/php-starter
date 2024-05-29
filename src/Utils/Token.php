@@ -36,7 +36,7 @@ class Token
     {
         self::init();
 
-        if (str_contains('Bearer ', $token))
+        if (str_contains($token, 'Bearer '))
             $token = str_replace('Bearer ', '', $token);
 
         try {
