@@ -17,11 +17,11 @@ class ArticleModel extends ApiController
     {
         $this->requireMethod('POST');
 
-        if ($this->data) {
+        if ($this->body) {
             $this->respond(
                 [
                     'message' => 'You tried to insert your first Article',
-                    'data' => $this->data
+                    'data' => $this->body
                 ]
             );
         } else {

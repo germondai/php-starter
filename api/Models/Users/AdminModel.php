@@ -10,7 +10,7 @@ class AdminModel extends ApiController
     {
         return [
             'message' => 'You tried to get your first Admin User',
-            'data' => $this->data
+            'data' => $this->body
         ];
     }
 }

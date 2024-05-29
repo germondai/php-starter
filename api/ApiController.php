@@ -9,7 +9,7 @@ use Utils\Helper;
 class ApiController
 {
     protected Explorer $e;
-    protected array $data;
+    protected array $body;
     private string $request;
     private array $action;
     protected array $statuses = [
@@ -34,20 +34,20 @@ class ApiController
     public function __construct()
     {
         $this->e = Database::explore();
-        $this->setData();
+        $this->setBody();
         $this->setRequest();
     }
 
-    private function setData()
+    private function setBody()
     {
         $requestData = json_decode(file_get_contents('php://input') ?? '', true) ?? [];
-        $data = array_merge(
+        $body = array_merge(
             $requestData,
             $_POST,
             $_GET,
         );
 
-        $this->data = $data;
+        $this->body = $body;
     }
 
     private function setRequest()
