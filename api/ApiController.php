@@ -18,6 +18,8 @@ class ApiController
     {
         if (str_contains($request, '/')) {
             $requestParts = explode('/', $request);
+            if (empty($requestParts[0]))
+                unset($requestParts[0]);
             $method = 'action' . ucfirst(array_pop($requestParts));
             $classParts = array_splice($requestParts, -1, 1);
             $modelName = ucfirst($classParts[0]) . 'Model';
