@@ -4,10 +4,14 @@ namespace Api;
 
 use Nette\Database\Explorer;
 use Utils\Database;
+use Utils\Helper;
 
 class ApiController
 {
     protected Explorer $e;
+    protected array $data;
+    private string $request;
+    private array $action;
     protected array $statuses = [
         400 => "Bad Request",
         401 => "Unauthorized",
@@ -30,36 +34,73 @@ class ApiController
     public function __construct()
     {
         $this->e = Database::explore();
+        $this->setData();
+        $this->setRequest();
     }
 
-    public function handleRequest(string $request, array $data): void
+    private function setData()
     {
-        if (str_contains($request, '/')) {
-            $requestParts = explode('/', $request);
+        $requestData = json_decode(file_get_contents('php://input') ?? '', true) ?? [];
+        $data = array_merge(
+            $requestData,
+            $_POST,
+            $_GET,
+        );
+
+        $this->data = $data;
+    }
+
+    private function setRequest()
+    {
+        $linkPath = Helper::getLinkPath();
+        $request = str_replace(substr($linkPath, 0, -4), '', $_SERVER['REDIRECT_URL']);
+
+        $this->request = $request;
+    }
+
+    private function solveRequest()
+    {
+        $req = $this->request;
+
+        if (str_contains($req, '/')) {
+            $requestParts = explode('/', $req);
             if (empty($requestParts[0]) || $requestParts[0] === 'api')
                 unset($requestParts[0]);
             $method = 'action' . ucfirst(array_pop($requestParts));
             $classParts = array_splice($requestParts, -1, 1);
-            $modelName = ucfirst($classParts[0]) . 'Model';
+            $model = ucfirst($classParts[0]) . 'Model';
             $namespace = 'Api\Models\\' . (!empty($requestParts) ? implode('\\', array_map('ucfirst', $requestParts)) . '\\' : '');
-            $className = $namespace . $modelName;
+            $class = $namespace . $model;
 
-            if (class_exists($className)) {
-                $model = new $className();
-
-                if (method_exists($model, $method)) {
-                    $result = $model->$method($data);
-
-                    // fallback if user just return, no $this->respond()
-                    $this->respond($result);
-                } else {
-                    $this->throwError(404, 'Method not found');
-                }
-            } else {
-                $this->throwError(404, 'Model not found');
-            }
+            $this->action = [
+                'class' => $class,
+                'method' => $method,
+            ];
         } else {
             $this->throwError(400, 'No model specified');
+        }
+    }
+
+    public function run(): void
+    {
+        $this->solveRequest();
+
+        $class = $this->action['class'];
+        $method = $this->action['method'];
+
+        if (class_exists($class)) {
+            $model = new $class();
+
+            if (method_exists($model, $method)) {
+                $result = $model->$method();
+
+                // fallback if user just return, no $this->respond()
+                $this->respond($result);
+            } else {
+                $this->throwError(404, 'Method not found');
+            }
+        } else {
+            $this->throwError(404, 'Model not found');
         }
     }
 

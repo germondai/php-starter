@@ -6,11 +6,11 @@ use Api\ApiController;
 
 class AdminModel extends ApiController
 {
-    public function actionGet(array $data)
+    public function actionGet()
     {
         return [
             'message' => 'You tried to get your first Admin User',
-            'data' => $data
+            'data' => $this->data
         ];
     }
 }

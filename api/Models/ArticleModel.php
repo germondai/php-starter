@@ -6,22 +6,22 @@ use Api\ApiController;
 
 class ArticleModel extends ApiController
 {
-    public function action(array $data)
+    public function action()
     {
         $this->requireMethod('GET');
 
         return 'This is default action';
     }
 
-    public function actionInsert(array $data)
+    public function actionInsert()
     {
         $this->requireMethod('POST');
 
-        if ($data) {
+        if ($this->data) {
             $this->respond(
                 [
                     'message' => 'You tried to insert your first Article',
-                    'data' => $data
+                    'data' => $this->data
                 ]
             );
         } else {
