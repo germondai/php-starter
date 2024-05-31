@@ -7,15 +7,21 @@ use Utils\Token;
 
 class AuthModel extends ApiController
 {
+    private array $user = [
+        'name' => 'Joe',
+        'surname' => 'Doe',
+        'email' => 'imejl',
+    ];
+
     public function action()
     {
-        $this->allowMethods(['POST']);
+        $this->allowMethods(['GET']);
         $this->requireHeaders(['Authorization']);
-        $jwt = $this->verifyJWT();
+        $this->verifyJWT();
 
-        return [
-            'verified' => $jwt
-        ];
+        return
+            $this->user
+        ;
     }
 
     public function actionLogin()
@@ -27,15 +33,9 @@ class AuthModel extends ApiController
             $this->params['email'] === 'imejl'
             && $this->params['password'] === 'pass'
         ) {
-            $user = [
-                'name' => 'Joe',
-                'surname' => 'Doe',
-                'email' => 'imejl',
-            ];
-
             return [
-                'user' => $user,
-                'token' => Token::generate($user),
+                'user' => $this->user,
+                'token' => Token::generate($this->user),
             ];
         } else {
             $this->throwError(401);
