@@ -29,11 +29,11 @@ class Doctrine
 
         # Database Connection for EntityManager
         self::$connection = DriverManager::getConnection($params ?? [
-            'host' => $_ENV['HOST'] ?? 'localhost',
-            'user' => $_ENV['USER'] ?? 'root',
-            'password' => $_ENV['PASS'] ?? '',
-            'dbname' => $_ENV['NAME'],
-            'driver' => $_ENV['DRIV'] ?? 'pdo_mysql',
+            'host' => $_ENV['DB_HOST'] ?? 'localhost',
+            'user' => $_ENV['DB_USER'] ?? 'root',
+            'password' => $_ENV['DB_PASS'] ?? '',
+            'dbname' => $_ENV['DB_NAME'],
+            'driver' => $_ENV['DB_DRIV'] ?? 'pdo_mysql',
         ], self::$config);
     }
 
