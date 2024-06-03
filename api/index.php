@@ -40,10 +40,15 @@ if ($orm) {
     foreach ($articles as [$title, $content]) {
         $article = (new Article())
             ->setTitle($title)
-            ->setContent($content);
+            ->setContent($content)
+            ->setCreatedAt(new DateTime());
 
         $user->addArticle($article);
+        $entityManager->persist($article);
     }
+
+    $entityManager->persist($user);
+    $entityManager->flush();
 
     dump($user);
 } else {
