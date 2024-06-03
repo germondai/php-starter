@@ -19,18 +19,36 @@ include $basePath . "src/includes/header.php";
         <div class="flex flex-col items-center gap-2">
             <b>Features</b>
             <ul class="list-disc">
-                <li>Own API System</li>
+                <li>Own REST API System</li>
+                <ul class="list-disc pl-5">
+                    <li>Routing</li>
+                    <li>Auth</li>
+                </ul>
                 <li>Security</li>
                 <ul class="list-disc pl-5">
                     <li>Routing</li>
                     <li>File and Dir access</li>
                 </ul>
                 <li>Custom Utils</li>
-                <li>Organized Structure</li>
+                <ul class="list-disc pl-5">
+                    <li>Helper</li>
+                    <li>Page Helper</li>
+                    <li>Database</li>
+                    <li>Doctrine</li>
+                    <li>JSON Web Tokens</li>
+                </ul>
+                <li>Well Organized Structure</li>
                 <li>Nette</li>
                 <ul class="list-disc pl-5">
                     <li>Database Explorer</li>
                     <li>Tracy</li>
+                </ul>
+                <li>Doctrine</li>
+                <ul class="list-disc pl-5">
+                    <li>ORM</li>
+                    <li>DBAL</li>
+                    <li>Entities</li>
+                    <li>Migrations</li>
                 </ul>
                 <li>Environment (.env)</li>
             </ul>
