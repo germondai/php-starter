@@ -27,7 +27,8 @@ class Helper
 
     public static function isDev(): bool
     {
-        return ($_SERVER['SERVER_ADDR'] == '127.0.0.1' || $_SERVER['SERVER_ADDR'] == '::1');
+        $address = $_SERVER['SERVER_ADDR'] ?? true;
+        return ($address == '127.0.0.1' || $address == '::1');
     }
 
     public static function formatLink(string $link): string

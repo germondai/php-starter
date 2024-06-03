@@ -3,32 +3,15 @@
 declare(strict_types=1);
 
 # Imports
-use Doctrine\DBAL\DriverManager;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\ORMSetup;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
+use Utils\Doctrine;
 
 # Require Config
 require_once __DIR__ . "/../src/includes/config.php";
 
-# Config for EntityManager
-$config = ORMSetup::createAttributeMetadataConfiguration(
-    paths: [$basePath . "api/Entity"],
-    isDevMode: true,
-);
-
-# Database Connection for EntityManager
-$connection = DriverManager::getConnection([
-    'host' => $_ENV['HOST'],
-    'user' => $_ENV['USER'],
-    'password' => $_ENV['PASS'],
-    'dbname' => $_ENV['NAME'],
-    'driver' => $_ENV['DRIV'],
-], $config);
-
 # EntityManager
-$entityManager = new EntityManager($connection, $config);
+$entityManager = Doctrine::getEntityManager();
 
 # Custom Console Commands
 $commands = [];
