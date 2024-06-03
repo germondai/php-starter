@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Api\Entity;
 
 use Api\BaseEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -26,6 +27,11 @@ class User extends BaseEntity
 
     #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'user')]
     private Collection $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getName(): string
     {
