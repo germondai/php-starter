@@ -28,9 +28,13 @@ class User extends BaseEntity
     #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'user')]
     private Collection $articles;
 
-    public function __construct()
+    public function __construct(string $name, string $surname, string $email, string $password)
     {
         $this->articles = new ArrayCollection();
+        $this->setName($name);
+        $this->setSurname($surname);
+        $this->setEmail($email);
+        $this->setPassword($password);
     }
 
     public function getName(): string
