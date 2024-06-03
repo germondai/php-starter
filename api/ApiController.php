@@ -80,7 +80,7 @@ class ApiController
 
             if ($classParts) {
                 $model = ucfirst($classParts[0]) . 'Model';
-                $namespace = 'Api\Models\\' . (!empty($requestParts) ? implode('\\', array_map('ucfirst', $requestParts)) . '\\' : '');
+                $namespace = 'Api\Model\\' . (!empty($requestParts) ? implode('\\', array_map('ucfirst', $requestParts)) . '\\' : '');
                 $class = $namespace . $model;
 
                 $this->action = [

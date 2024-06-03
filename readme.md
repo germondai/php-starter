@@ -25,7 +25,7 @@ This project **simplifies** starting new **PHP** projects. It's perfect if you w
 
 ## 🧬 Structure
 
-**api/** - accessible on /api/_model_/_action_, contains models\
+**api/** - accessible on /api/_model_/_action_, (has models and entities)\
 **public/** - the main directory accessible from outside\
 **src/** - contains includes, utils and dev assets\
 

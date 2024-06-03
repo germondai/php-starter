@@ -1,6 +1,6 @@
 <?php
 
-namespace Api\Models;
+namespace Api\Model;
 
 use Api\ApiController;
 
