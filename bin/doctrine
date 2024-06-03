@@ -21,6 +21,7 @@ $dependencyFactory = DependencyFactory::fromEntityManager(
 # Custom Console Commands
 $commands = [
     new Command\DumpSchemaCommand($dependencyFactory),
+    new Command\DiffCommand($dependencyFactory),
     new Command\ExecuteCommand($dependencyFactory),
     new Command\GenerateCommand($dependencyFactory),
     new Command\LatestCommand($dependencyFactory),
