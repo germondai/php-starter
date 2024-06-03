@@ -13,19 +13,19 @@ class BaseEntity
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private int|null $id = null;
+    protected int|null $id = null;
 
     /** @var \DateTime */
     #[ORM\Column(type: 'datetime')]
-    private \DateTime $createdAt;
+    protected \DateTime $createdAt;
 
     /** @var \DateTime */
     #[ORM\Column(type: 'datetime')]
-    private \DateTime $updatedAt;
+    protected \DateTime $updatedAt;
 
     /** @var \DateTime */
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private \DateTime $deletedAt;
+    protected \DateTime $deletedAt;
 
     public function getId(): int|null
     {
