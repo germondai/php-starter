@@ -17,6 +17,9 @@ class Article extends BaseEntity
     #[ORM\Column(type: 'string')]
     private string $content;
 
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    private User $user;
+
     public function getTitle(): string
     {
         return $this->title;
@@ -35,5 +38,16 @@ class Article extends BaseEntity
     public function setContent(string $content): void
     {
         $this->content = $content;
+    }
+
+    // User
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
     }
 }

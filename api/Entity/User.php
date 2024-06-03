@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Api\Entity;
 
 use Api\BaseEntity;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -22,6 +23,9 @@ class User extends BaseEntity
 
     #[ORM\Column(type: 'string', length: 256)]
     private string $password;
+
+    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'user')]
+    private Collection $articles;
 
     public function getName(): string
     {
@@ -61,5 +65,25 @@ class User extends BaseEntity
     public function setPassword(string $password): void
     {
         $this->password = $password;
+    }
+
+    // Articles
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): User
+    {
+        $article->setUser($this);
+
+        $this->articles->add($article);
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): void
+    {
+        $this->articles->removeElement($article);
     }
 }
