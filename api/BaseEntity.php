@@ -13,7 +13,7 @@ class BaseEntity
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    protected int|null $id = null;
+    protected ?int $id = null;
 
     /** @var \DateTime */
     #[ORM\Column(type: 'datetime')]
@@ -21,21 +21,20 @@ class BaseEntity
 
     /** @var \DateTime */
     #[ORM\Column(type: 'datetime', nullable: true)]
-    protected \DateTime $updatedAt;
+    protected ?\DateTime $updatedAt = null;
 
     /** @var \DateTime */
     #[ORM\Column(type: 'datetime', nullable: true)]
-    protected \DateTime $deletedAt;
+    protected ?\DateTime $deletedAt = null;
 
-    public function getId(): int|null
+    public function __construct()
     {
-        return $this->id;
+        $this->setCreatedAt(new \DateTime());
     }
 
-    public function setId(int $id)
+    public function getId(): ?int
     {
-        $this->id = $id;
-        return $this;
+        return $this->id;
     }
 
     public function getCreatedAt(): \DateTime
