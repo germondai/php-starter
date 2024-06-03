@@ -25,9 +25,10 @@ class Article extends BaseEntity
         return $this->title;
     }
 
-    public function setTitle(string $title): void
+    public function setTitle(string $title): Article
     {
         $this->title = $title;
+        return $this;
     }
 
     public function getContent(): string
@@ -35,9 +36,10 @@ class Article extends BaseEntity
         return $this->content;
     }
 
-    public function setContent(string $content): void
+    public function setContent(string $content): Article
     {
         $this->content = $content;
+        return $this;
     }
 
     // User
@@ -46,8 +48,9 @@ class Article extends BaseEntity
         return $this->user;
     }
 
-    public function setUser(User $user): void
+    public function setUser(User $user): Article
     {
         $this->user = $user;
+        return $this;
     }
 }

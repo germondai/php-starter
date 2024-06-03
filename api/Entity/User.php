@@ -32,9 +32,10 @@ class User extends BaseEntity
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function setName(string $name): User
     {
         $this->name = $name;
+        return $this;
     }
 
     public function getSurname(): string
@@ -42,9 +43,10 @@ class User extends BaseEntity
         return $this->surname;
     }
 
-    public function setSurname(string $surname): void
+    public function setSurname(string $surname): User
     {
         $this->surname = $surname;
+        return $this;
     }
 
     public function getEmail(): string
@@ -52,9 +54,10 @@ class User extends BaseEntity
         return $this->email;
     }
 
-    public function setEmail(string $email): void
+    public function setEmail(string $email): User
     {
         $this->email = $email;
+        return $this;
     }
 
     public function getPassword(): string
@@ -62,9 +65,10 @@ class User extends BaseEntity
         return $this->password;
     }
 
-    public function setPassword(string $password): void
+    public function setPassword(string $password): User
     {
         $this->password = $password;
+        return $this;
     }
 
     // Articles
@@ -82,8 +86,9 @@ class User extends BaseEntity
         return $this;
     }
 
-    public function removeArticle(Article $article): void
+    public function removeArticle(Article $article): User
     {
         $this->articles->removeElement($article);
+        return $this;
     }
 }
