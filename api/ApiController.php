@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Api;
 
 use Nette\Database\Explorer;
@@ -123,7 +125,7 @@ class ApiController
     protected function respond(array|string $response, int $code = 200): void
     {
         http_response_code($code);
-        echo json_encode(!is_array($response) ? ['data' => $response] : $response, true);
+        echo json_encode(!is_array($response) ? ['data' => $response] : $response, 1);
         die();
     }
 
