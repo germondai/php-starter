@@ -5,6 +5,7 @@ declare(strict_types=1);
 # imports
 use Utils\Helper;
 use Utils\Database;
+use Utils\Doctrine;
 
 # paths
 $basePath = realpath(__DIR__ . "/../../") . "/";
@@ -44,15 +45,18 @@ try {
 
 # database
 try {
-    Database::connect(
-        $_ENV['DB_DSN'],
-        $_ENV['DB_USER'],
-        $_ENV['DB_PASS']
-    );
-
+    Database::connect();
     $explorer = Database::explore();
 } catch (\Throwable $th) {
     trigger_error('Database Connection Failed!');
+}
+
+# database
+try {
+    Doctrine::connect();
+    $entityManager = Doctrine::getEntityManager();
+} catch (\Throwable $th) {
+    trigger_error('Doctrine Connection Failed!');
 }
 
 # timezone

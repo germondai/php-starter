@@ -5,13 +5,9 @@ declare(strict_types=1);
 # Imports
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
-use Utils\Doctrine;
 
 # Require Config
 require_once __DIR__ . "/../src/includes/config.php";
-
-# EntityManager
-$entityManager = Doctrine::getEntityManager();
 
 # Custom Console Commands
 $commands = [];

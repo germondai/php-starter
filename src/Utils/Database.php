@@ -14,7 +14,7 @@ class Database
 {
     private static Explorer $explorer;
 
-    public static function connect(string $dsn, string $user, string $pass): void
+    public static function connect(string $dsn = null, string $user = null, string $pass = null): void
     {
         # Create temp folder for storage
         $storagePath = Helper::getBasePath() . "temp";
@@ -24,7 +24,11 @@ class Database
 
         # Connection
         $storage = new FileStorage($storagePath);
-        $connection = new Connection($dsn, $user, $pass);
+        $connection = new Connection(
+            $dsn ?? $_ENV['DB_DSN'] ?? 'mysql:host=127.0.0.1;dbname=DB_NAME_HERE',
+            $user ?? $_ENV['DB_USER'] ?? 'root',
+            $pass ?? $_ENV['DB_PASS'] ?? ''
+        );
         $structure = new Structure($connection, $storage);
         $conventions = new DiscoveredConventions($structure);
         self::$explorer = new Explorer($connection, $structure, $conventions, $storage);
@@ -32,6 +36,9 @@ class Database
 
     public static function explore(): Explorer
     {
+        if (empty(self::$explorer))
+            self::connect();
+
         return self::$explorer;
     }
 }

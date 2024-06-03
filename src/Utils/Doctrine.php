@@ -15,7 +15,7 @@ class Doctrine
     private static Configuration $config;
     private static Connection $connection;
 
-    public static function connect(): void
+    public static function connect(array $params = null): void
     {
         # Config for EntityManager
         self::$config = ORMSetup::createAttributeMetadataConfiguration(
@@ -24,7 +24,7 @@ class Doctrine
         );
 
         # Database Connection for EntityManager
-        self::$connection = DriverManager::getConnection([
+        self::$connection = DriverManager::getConnection($params ?? [
             'host' => $_ENV['HOST'] ?? 'localhost',
             'user' => $_ENV['USER'] ?? 'root',
             'password' => $_ENV['PASS'] ?? '',
