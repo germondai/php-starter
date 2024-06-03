@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace Api;
 
+use Doctrine\ORM\EntityManager;
 use Nette\Database\Explorer;
 use Utils\Database;
+use Utils\Doctrine;
 use Utils\Helper;
 use Utils\Token;
 
 class ApiController
 {
     protected Explorer $e;
+    protected EntityManager $em;
     protected array $params;
     protected array $headers;
     private string $request;
@@ -38,6 +41,7 @@ class ApiController
     public function __construct()
     {
         $this->e = Database::explore();
+        $this->em = Doctrine::getEntityManager();
         $this->setParams();
         $this->setHeaders();
         $this->setRequest();
