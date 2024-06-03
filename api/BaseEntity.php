@@ -6,20 +6,25 @@ namespace Api;
 
 use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\MappedSuperclass]
 class BaseEntity
 {
+    /** @var int */
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
     private int|null $id = null;
 
+    /** @var \DateTime */
     #[ORM\Column(type: 'datetime')]
     private \DateTime $createdAt;
 
+    /** @var \DateTime */
     #[ORM\Column(type: 'datetime')]
     private \DateTime $updatedAt;
 
-    #[ORM\Column(type: 'datetime')]
+    /** @var \DateTime */
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private \DateTime $deletedAt;
 
     public function getId(): int|null
