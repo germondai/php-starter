@@ -1,0 +1,17 @@
+<?php
+
+declare(strict_types=1);
+
+# Imports
+use Doctrine\Migrations\Configuration\EntityManager\ExistingEntityManager;
+use Doctrine\Migrations\Configuration\Migration\PhpFile;
+use Doctrine\Migrations\DependencyFactory;
+
+# Require Config
+require_once __DIR__ . "/../src/includes/config.php";
+
+# Dependency Factory
+return DependencyFactory::fromEntityManager(
+    new PhpFile(__DIR__ . '/../migrations.php'),
+    new ExistingEntityManager($entityManager)
+);
