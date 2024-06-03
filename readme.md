@@ -13,11 +13,18 @@ This project **simplifies** starting new **PHP** projects. It's perfect if you w
 **Overview**
 
 - Own REST API System
+  - Routing
+  - Auth
 - Security
   - Routing
   - File and Dir access
 - Custom Utils
-- Organized Structure
+  - Helper
+  - Page Helper
+  - Database
+  - Doctrine
+  - JSON Web Tokens
+- Well Organized Structure
 - Nette
   - Database Explorer
   - Tracy
@@ -44,6 +51,7 @@ This project **simplifies** starting new **PHP** projects. It's perfect if you w
 - <a href="https://jquery.com/" target="_blank">jQuery</a>
 - <a href="https://www.doctrine-project.org/" target="_blank">Doctrine</a>
 - <a href="https://doc.nette.org/en/database" target="_blank">Nette DB</a>
+- <a href="https://jwt.io/" target="_blank">JSON Web Tokens (JWT)</a>
 
 ## 🛠️ Installation Instructions
 
