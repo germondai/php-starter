@@ -12,7 +12,7 @@ This project **simplifies** starting new **PHP** projects. It's perfect if you w
 
 **Overview**
 
-- Own API System
+- Own REST API System
 - Security
   - Routing
   - File and Dir access
@@ -21,19 +21,29 @@ This project **simplifies** starting new **PHP** projects. It's perfect if you w
 - Nette
   - Database Explorer
   - Tracy
+- Doctrine
+  - ORM
+  - DBAL
+  - Entities
+  - Migrations
 - Environment (.env)
 
 ## 🧬 Structure
 
-**api/** - accessible on /api/_model_/_action_, (has models and entities)\
+**api/** - accessible on /api/_model_/_action_, (models and entities)\
+**bin/** - Console for Doctrine\
+**migrations/** - Doctrine DB Migrations\
 **public/** - the main directory accessible from outside\
 **src/** - contains includes, utils and dev assets\
+**temp/** - Nette DB Temp Storage\
 
 ## 🧠 Technologies
 
 - <a href="https://www.php.net/" target="_blank">PHP</a>
 - <a href="https://tailwindcss.com/" target="_blank">TailwindCSS</a>
 - <a href="https://jquery.com/" target="_blank">jQuery</a>
+- <a href="https://www.doctrine-project.org/" target="_blank">Doctrine</a>
+- <a href="https://doc.nette.org/en/database" target="_blank">Nette DB</a>
 
 ## 🛠️ Installation Instructions
 
@@ -71,6 +81,23 @@ pnpm run watch:css
 
 # or simply run start (does the same)
 pnpm run start
+```
+
+## 📚 Doctrine Guide
+
+The Doctrine console is in "_bin/console_"\
+EntityManager config location "_src/Utils/Doctrine.php_"\
+Base migrations config, which is in root "_migrations.php_"\
+And migration files are stored in "_migrations/_"
+
+### Console
+
+```bash
+# To run doctrine console
+php bin/console ...
+
+# if you need commands list
+php bin/console list
 ```
 
 <p align="center">
