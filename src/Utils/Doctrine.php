@@ -8,6 +8,7 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
 use Doctrine\ORM\ORMSetup;
 
 class Doctrine
@@ -18,10 +19,13 @@ class Doctrine
     public static function connect(array $params = null): void
     {
         # Config for EntityManager
-        self::$config = ORMSetup::createAttributeMetadataConfiguration(
+        $config = ORMSetup::createAttributeMetadataConfiguration(
             paths: [Helper::getBasePath() . "api/Entity"],
             isDevMode: true,
         );
+        $config->setNamingStrategy(new UnderscoreNamingStrategy(CASE_LOWER));
+
+        self::$config = $config;
 
         # Database Connection for EntityManager
         self::$connection = DriverManager::getConnection($params ?? [
