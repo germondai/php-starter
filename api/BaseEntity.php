@@ -32,9 +32,10 @@ class BaseEntity
         return $this->id;
     }
 
-    public function setId(int $id): void
+    public function setId(int $id)
     {
         $this->id = $id;
+        return $this;
     }
 
     public function getCreatedAt(): \DateTime
@@ -42,9 +43,10 @@ class BaseEntity
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): void
+    public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
+        return $this;
     }
 
     public function getUpdatedAt(): \DateTime
@@ -52,9 +54,10 @@ class BaseEntity
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTime $updatedAt): void
+    public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
+        return $this;
     }
 
     public function getDeletedAt(): \DateTime
@@ -62,8 +65,9 @@ class BaseEntity
         return $this->deletedAt;
     }
 
-    public function setDeletedAt(\DateTime $deletedAt): void
+    public function setDeletedAt(\DateTime $deletedAt)
     {
         $this->deletedAt = $deletedAt;
+        return $this;
     }
 }
