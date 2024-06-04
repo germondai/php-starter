@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://germondai.rf.gd" target="_blank">
+  <a href="https://api.germondai.com" target="_blank">
     <img align="center" src="https://skillicons.dev/icons?i=php,mysql,tailwind,jquery" /><br/><br/>
     <span>PHP Starter</span>&nbsp;
     <img src="public/assets/img/favicon.ico" alt="Rocket Icon" width="24"/>
@@ -107,6 +107,8 @@ php bin/console ...
 # if you need commands list
 php bin/console list
 ```
+
+---
 
 <p align="center">
     <span>Made with ❤️ by</span>
